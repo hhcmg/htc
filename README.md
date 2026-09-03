@@ -62,6 +62,42 @@ sudo ./vps-egress-limit.sh install 300 eth0
 sudo ./vps-egress-limit.sh apply
 ```
 
+## 永久服务管理
+
+执行 `install` 后，可以直接使用安装到 `/usr/local/sbin` 的 `vps-egress-limit` 命令管理永久限速。
+
+修改永久限速值并立即重启服务，例如改为 500 Mbps：
+
+```bash
+sudo vps-egress-limit set-rate 500
+```
+
+暂停限速并取消开机启动，但保留脚本、服务和配置文件：
+
+```bash
+sudo vps-egress-limit disable
+```
+
+重新启用永久限速并恢复开机启动：
+
+```bash
+sudo vps-egress-limit enable
+```
+
+查看指定网卡的拥塞控制、队列规则、HTB class 和永久服务状态：
+
+```bash
+sudo vps-egress-limit status eth0
+```
+
+彻底卸载永久服务、配置和安装副本，并将根队列恢复为 `fq`：
+
+```bash
+sudo vps-egress-limit uninstall
+```
+
+卸载不会删除最初下载或克隆的 `vps-egress-limit.sh`。如果系统找不到 `vps-egress-limit` 命令，可使用完整路径 `/usr/local/sbin/vps-egress-limit`。
+
 ## 命令说明
 
 ```text
