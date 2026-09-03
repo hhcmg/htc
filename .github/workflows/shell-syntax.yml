@@ -16,3 +16,9 @@ jobs:
 
       - name: Check Bash syntax
         run: bash -n vps-egress-limit.sh
+
+      - name: Check help command
+        run: bash vps-egress-limit.sh --help >/dev/null
+
+      - name: Test CLI parsing
+        run: bash tests/test-cli.sh
